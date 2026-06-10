@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canvas Size and FPS Test</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101215;
+      --panel: rgba(20, 23, 28, 0.86);
+      --panel-border: rgba(255, 255, 255, 0.14);
+      --text: #f4f6f8;
+      --muted: #aeb7c2;
+      --accent: #52d67a;
+      --warn: #ffb347;
+      --bad: #ff6b6b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .meter {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      width: min(360px, calc(100vw - 48px));
+      padding: 18px;
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(16px);
+    }
+
+    .label {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .signal {
+      margin: 0;
+      max-width: 100%;
+      white-space: nowrap;
+      font-size: clamp(28px, 5.2vw, 38px);
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .stat span {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .stat strong {
+      display: block;
+      overflow-wrap: anywhere;
+      font-size: 18px;
+      font-weight: 750;
+    }
+
+    .status {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .ok {
+      color: var(--accent);
+    }
+
+    .warn {
+      color: var(--warn);
+    }
+
+    .bad {
+      color: var(--bad);
+    }
+
+    @media (max-width: 560px) {
+      .meter {
+        top: 14px;
+        left: 14px;
+        width: calc(100vw - 28px);
+        padding: 14px;
+      }
+
+      .signal {
+        font-size: clamp(24px, 9vw, 34px);
+      }
+
+      .details {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="testCanvas" aria-label="Animated canvas used for size and FPS testing"></canvas>
+
+  <section class="meter" aria-live="polite">
+    <p class="label">Browser canvas signal</p>
+    <h1 class="signal" id="signal">0x0p0</h1>
+    <div class="details">
+      <div class="stat">
+        <span>Viewport</span>
+        <strong id="viewport">0 x 0</strong>
+      </div>
+      <div class="stat">
+        <span>Canvas pixels</span>
+        <strong id="canvasSize">0 x 0</strong>
+      </div>
+      <div class="stat">
+        <span>FPS</span>
+        <strong id="fps">0</strong>
+      </div>
+      <div class="stat">
+        <span>Device pixel ratio</span>
+        <strong id="dpr">1</strong>
+      </div>
+    </div>
+    <div class="status" id="status">Measuring...</div>
+  </section>
+
+  <script>
+    const canvas = document.getElementById("testCanvas");
+    const ctx = canvas.getContext("2d", { alpha: false });
+
+    const signalEl = document.getElementById("signal");
+    const viewportEl = document.getElementById("viewport");
+    const canvasSizeEl = document.getElementById("canvasSize");
+    const fpsEl = document.getElementById("fps");
+    const dprEl = document.getElementById("dpr");
+    const statusEl = document.getElementById("status");
+
+    let viewportWidth = 0;
+    let viewportHeight = 0;
+    let pixelRatio = 1;
+    let lastTime = performance.now();
+    let frames = 0;
+    let fps = 0;
+    let fpsSamples = [];
+    let gridOffset = 0;
+
+    function resizeCanvas() {
+      pixelRatio = Math.max(1, window.devicePixelRatio || 1);
+      viewportWidth = Math.max(1, Math.round(window.innerWidth));
+      viewportHeight = Math.max(1, Math.round(window.innerHeight));
+
+      canvas.width = Math.round(viewportWidth * pixelRatio);
+      canvas.height = Math.round(viewportHeight * pixelRatio);
+      canvas.style.width = `${viewportWidth}px`;
+      canvas.style.height = `${viewportHeight}px`;
+
+      ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      updateReadout();
+    }
+
+    function updateReadout() {
+      const roundedFps = Math.round(fps);
+      signalEl.textContent = `${viewportWidth}x${viewportHeight}p${roundedFps}`;
+      viewportEl.textContent = `${viewportWidth} x ${viewportHeight}`;
+      canvasSizeEl.textContent = `${canvas.width} x ${canvas.height}`;
+      fpsEl.textContent = roundedFps.toString();
+      dprEl.textContent = pixelRatio.toFixed(pixelRatio % 1 === 0 ? 0 : 2);
+
+      const averageFps = fpsSamples.length
+        ? fpsSamples.reduce((sum, sample) => sum + sample, 0) / fpsSamples.length
+        : 0;
+      const className = averageFps >= 55 ? "ok" : averageFps >= 45 ? "warn" : "bad";
+      const label = averageFps >= 55 ? "p60-class" : averageFps >= 45 ? "below p60" : "low FPS";
+      statusEl.innerHTML = `Average: <span class="${className}">${averageFps.toFixed(1)} FPS</span> (${label}). Resize the browser to retest canvas size.`;
+    }
+
+    function draw(now) {
+      frames += 1;
+      const elapsed = now - lastTime;
+
+      if (elapsed >= 500) {
+        fps = (frames * 1000) / elapsed;
+        frames = 0;
+        lastTime = now;
+        fpsSamples.push(fps);
+
+        if (fpsSamples.length > 20) {
+          fpsSamples.shift();
+        }
+
+        updateReadout();
+      }
+
+      const t = now * 0.001;
+      ctx.fillStyle = "#101215";
+      ctx.fillRect(0, 0, viewportWidth, viewportHeight);
+
+      const grid = 48;
+      gridOffset = (gridOffset + 1) % grid;
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.beginPath();
+      for (let x = -grid + gridOffset; x < viewportWidth + grid; x += grid) {
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, viewportHeight);
+      }
+      for (let y = -grid + gridOffset; y < viewportHeight + grid; y += grid) {
+        ctx.moveTo(0, y);
+        ctx.lineTo(viewportWidth, y);
+      }
+      ctx.stroke();
+
+      const radius = Math.max(34, Math.min(viewportWidth, viewportHeight) * 0.055);
+      const x = viewportWidth * 0.5 + Math.cos(t * 1.2) * viewportWidth * 0.28;
+      const y = viewportHeight * 0.5 + Math.sin(t * 1.6) * viewportHeight * 0.22;
+      const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius * 2.8);
+      gradient.addColorStop(0, "rgba(82, 214, 122, 0.9)");
+      gradient.addColorStop(0.52, "rgba(64, 156, 255, 0.34)");
+      gradient.addColorStop(1, "rgba(16, 18, 21, 0)");
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(x, y, radius * 2.8, 0, Math.PI * 2);
+      ctx.fill();
+
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resizeCanvas, { passive: true });
+    resizeCanvas();
+    requestAnimationFrame(draw);
+  </script>
+</body>
+</html>
