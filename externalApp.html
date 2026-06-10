@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>External Apps</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="logo.ico" />
+</head>
+<body>
+  <!------------------------------------>
+  <!--         Navigation Bar         -->
+  <!------------------------------------>
+  <button class="get-started" id="getStarted"></button>
+  <button class="contact-us" id="contactUs"></button>
+
+  
+  <!------------------------------------>
+  <!--         Setup Content          -->
+  <!------------------------------------>
+  <div class="setup-title-2" id="setup1"></div>
+  <div class="setup-content">
+    <div class="vertical-progress-bar">
+      <div class="progress-fill-vertical"></div>
+    </div>
+    <div class="step-content">
+      <div class="step-number" id="num1">01</div>
+      <div class="step-instruction" id="step1"></div>
+      <div class="img-container" id="img1">
+        <img src="setup/homeListExternalApps.png" alt="Step 1 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num2">02</div>
+      <div class="step-instruction" id="step2"></div>
+      <div class="img-container" id="img2">
+        <img src="setup/information.png" alt="Step 2 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num3">03</div>
+      <div class="step-instruction" id="step3"></div>
+      <div class="img-container" id="img3">
+        <img src="setup/settings.png" alt="Step 3 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num4">04</div>
+      <div class="step-instruction" id="step4"></div>
+      <div class="img-container" id="img4">
+        <img src="setup/advancedSettingsConnections.png" alt="Step 4 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num5">05</div>
+      <div class="step-instruction" id="step5"></div>
+      <div class="img-container" id="img5">
+        <img src="setup/connectionsExternalApps.png" alt="Step 5 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num6">06</div>
+      <div class="step-instruction" id="step6"></div>
+      <div class="img-container" id="img6">
+        <img src="setup/externalAppsAdd.png" alt="Step 6 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num7">07</div>
+      <div class="step-instruction" id="step7"></div>
+      <div class="img-container" id="img7">
+        <img src="setup/fillExternalAppsAdd.png" alt="Step 7 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num8">08</div>
+      <div class="step-instruction" id="step8"></div>
+      <div class="img-container" id="img8">
+        <img src="setup/externalAppsNewApp.png" alt="Step 8 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num9">09</div>
+      <div class="step-instruction" id="step9"></div>
+      <div class="img-container" id="img9">
+        <img src="setup/homeListExternalAppsNew.png" alt="Step 9 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num10">10</div>
+      <div class="step-instruction" id="step10"></div>
+      <div class="img-container" id="img10">
+        <img src="setup/selectDefaultApp.png" alt="Step 10 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num11">11</div>
+      <div class="step-instruction" id="step11"></div>
+      <div class="img-container" id="img11">
+        <img src="setup/configureWebApp.png" alt="Step 11 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num12">12</div>
+      <div class="step-instruction" id="step12"></div>
+      <div class="img-container" id="img12">
+        <img src="setup/uploadWeb.png" alt="Step 12 Screenshot" class="img"/>
+      </div>
+      <div class="step-number" id="num13">13</div>
+      <div class="step-instruction" id="step13"></div>
+      <div class="img-container" id="img13">
+        <img src="setup/selectWebApp.png" alt="Step 13 Screenshot" class="img"/>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+  /*===================================*/
+  /*           Define Texts            */
+  /*===================================*/
+  const getStarted = "Get Started";
+  const contactUs = "Contact Us";
+  const setup1 = "External Apps Setup";
+  const step1 = "From the Home screen, select icon 'i' on the bottom-left.";
+  const step2 = "Select 'Settings' on the upper-right.";
+  const step3 = "Select 'Advanced' - For administrators only.";
+  const step4 = "Select 'Connections' - LAN, NAS, Remote Access.";
+  const step5 = "Select 'External Apps'.";
+  const step6 = "To add an external app, select the '+' icon.";
+  const step7 = "Fill in the app details and click 'Add'.";
+  const step8 = "Successfully added external app will be displayed here";
+  const step9 = "The new external app is now available on the Home page.";
+  const step10 = "To set the default app, do step 1 to 5 again. Then select the app in default app section.";
+  const step11 = "To replace this guidance app with your web app, select 'Configure Web App'.";
+  const step12 = "Make sure your usb drive with your web app is connected, then select 'Upload web'.";
+  const step13 = "Select your web app from the list to set it as default.";
+
+  document.querySelector('#getStarted').textContent = getStarted;
+  document.querySelector('#contactUs').textContent = contactUs;
+  document.querySelector('#setup1').textContent = setup1;
+  document.querySelector('#step1').textContent = step1;
+  document.querySelector('#step2').textContent = step2;
+  document.querySelector('#step3').textContent = step3;
+  document.querySelector('#step4').textContent = step4;
+  document.querySelector('#step5').textContent = step5;
+  document.querySelector('#step6').textContent = step6;
+  document.querySelector('#step7').textContent = step7;
+  document.querySelector('#step8').textContent = step8;
+  document.querySelector('#step9').textContent = step9;
+  document.querySelector('#step10').textContent = step10;
+  document.querySelector('#step11').textContent = step11;
+  document.querySelector('#step12').textContent = step12;
+  document.querySelector('#step13').textContent = step13;
+  
+  
+  /*===================================*/
+  /*     Button Navigation Actions     */
+  /*===================================*/
+
+  //==== Get Started Button ====//
+  document.querySelector('.get-started').addEventListener('click', () => {
+    window.location.href = 'index.html#setupSection';
+  });
+
+  //==== Contact Us Button ====//
+  document.querySelector('.contact-us').addEventListener('click', () => {
+    window.location.href = 'https://www.medicapture.com/support';
+  });
+
+
+  /*===================================*/
+  /*       Vertical Progress Bar       */
+  /*===================================*/
+  window.addEventListener('scroll', function() {
+    const line = document.querySelector('.vertical-progress-bar');
+    if (window.scrollY > 0) {
+      line.style.top = '0';
+      line.style.height = '100vh';
+    } else {
+      line.style.top = '10vw';
+      line.style.height = 'calc(100vh - 10vw)';
+    }
+  });
+
+  function updateVerticalProgress() {
+    const steps = [
+      document.getElementById('step1'),
+      document.getElementById('step2'),
+      document.getElementById('step3'),
+      document.getElementById('step4'),
+      document.getElementById('step5'),
+      document.getElementById('step6'),
+      document.getElementById('step7'),
+      document.getElementById('step8'),
+      document.getElementById('step9'),
+      document.getElementById('step10'),
+      document.getElementById('step11'),
+      document.getElementById('step12'),
+      document.getElementById('step13')
+    ];
+    let stepsPassed = 0;
+    const viewportMiddle = window.innerHeight / 2;
+
+    steps.forEach(step => {
+      if (!step) return;
+      const rect = step.getBoundingClientRect();
+      if (rect.top < viewportMiddle) {
+        stepsPassed++;
+      }
+    });
+
+    const percent = (stepsPassed / steps.length) * 100;
+    document.querySelector('.progress-fill-vertical').style.height = percent + '%';
+  }
+
+  window.addEventListener('scroll', updateVerticalProgress);
+  window.addEventListener('resize', updateVerticalProgress);
+  window.addEventListener('DOMContentLoaded', updateVerticalProgress);
+
+
+  /*===================================*/
+  /*            Animations             */
+  /*===================================*/
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
+  function animateElementsOnScroll() {
+    const elements = [
+      document.getElementById('step1'),
+      document.getElementById('step2'),
+      document.getElementById('step3'),
+      document.getElementById('step4'),
+      document.getElementById('step5'),
+      document.getElementById('step6'),
+      document.getElementById('step7'),
+      document.getElementById('step8'),
+      document.getElementById('step9'),
+      document.getElementById('step10'),
+      document.getElementById('step11'),
+      document.getElementById('step12'),
+      document.getElementById('step13'),
+      document.getElementById('num1'),
+      document.getElementById('num2'),
+      document.getElementById('num3'),
+      document.getElementById('num4'),
+      document.getElementById('num5'),
+      document.getElementById('num6'),
+      document.getElementById('num7'),
+      document.getElementById('num8'),
+      document.getElementById('num9'),
+      document.getElementById('num10'),
+      document.getElementById('num11'),
+      document.getElementById('num12'),
+      document.getElementById('num13'),
+      document.getElementById('img1'),
+      document.getElementById('img2'),
+      document.getElementById('img3'),
+      document.getElementById('img4'),
+      document.getElementById('img5'),
+      document.getElementById('img6'),
+      document.getElementById('img7'),
+      document.getElementById('img8'),
+      document.getElementById('img9'),
+      document.getElementById('img10'),
+      document.getElementById('img11'),
+      document.getElementById('img12'),
+      document.getElementById('img13')
+    ];
+
+    elements.forEach(el => {
+      if (el) {
+        if (isInViewport(el)) {
+          el.classList.add('animate');
+        } else {
+          el.classList.remove('animate');
+        }
+      }
+    });
+
+    const cards = document.querySelectorAll('.step-content');
+    cards.forEach(card => {
+      if (isInViewport(card)) {
+        card.classList.add('animate');
+      } else {
+        card.classList.remove('animate');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', animateElementsOnScroll); 
+  window.addEventListener('load', animateElementsOnScroll);
+  window.addEventListener('DOMContentLoaded', animateElementsOnScroll);
+</script>
+

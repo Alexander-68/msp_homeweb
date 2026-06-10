@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MSP 156</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="logo.ico" />
+</head>
+<body>
+  <!------------------------------------>
+  <!--         Navigation Bar         -->
+  <!------------------------------------>
+  <button class="get-started" id="getStarted"></button>
+  <button class="contact-us" id="contactUs"></button>
+
+
+  <!------------------------------------>
+  <!--        Landing Section         -->
+  <!------------------------------------>
+  <div class="landing-section">
+    <div class="shape rectangle large"></div>
+    <div class="shape circle small left"></div>
+    <div class="shape rectangle tall right"></div>
+    <div class="title" id="title"></div>
+    <p class="caption" id="caption"></p>
+    <div class="shape rectangle medium bottom"></div>
+    <div class="shape circle small right-bottom"></div>
+  </div>
+
+
+  <!------------------------------------>
+  <!--         About Section          -->
+  <!------------------------------------>
+  <div class="about-section" >
+    <div class="about-content">
+      <h2 id="aboutTitle"></h2>
+      <p id="aboutDesc" style="white-space: pre-line;"></p>
+    </div>
+    <!-- u can add the msp 156 device picture here if needed -->
+    <!-- <div class="about-image">
+      <img src="device-picture.png" alt="About MSP 156" />
+    </div> -->
+  </div>
+
+
+  <!------------------------------------>
+  <!--         Setup Section          -->
+  <!------------------------------------>
+  <div class="setup-section" id="setupSection">
+    <h2 class="setup-title" id="getStartedTitle"></h2>
+    <div class="cards">
+      <div class="card">
+        <h2 id="setup1"></h2>
+        <p id="setup1Desc"></p>
+        <button id="learnMore1"></button>
+      </div>
+      <div class="card">
+        <h2 id="setup2"></h2>
+        <p id="setup2Desc"></p>
+        <button id="learnMore2"></button>
+      </div>
+      <div class="card">
+        <h2 id="setup3"></h2>
+        <p id="setup3Desc"></p>
+        <button id="learnMore3"></button>
+      </div>
+    </div>  
+  </body>
+</html>
+
+<script>
+  /*===================================*/
+  /*           Define Texts            */
+  /*===================================*/
+  const title = "MSP156";
+  const caption = "Your Gateway to Seamless Medical Device Control";
+  const getStarted = "Get Started";
+  const contactUs = "Contact Us";
+  const aboutTitle = "About MSP 156";
+  const aboutDesc = `The MSP device serves as a user interface for the remote control of medical devices and systems. Control is typically accessed through a web browser on the MSP device, which connects to a remote web server hosted by the medical device. Users interact with the system via the front touchscreen interface.
+                    
+                    This device is intended exclusively for operation by qualified healthcare and IT professionals, ensuring that only trained personnel manage its functions. It is not designed or intended to be operated by patients.`;
+  const getStartedTitle = "Start First Setup";
+  const setup1 = "Network";
+  const setup1Desc = "Configure network settings to connect to your local network.";
+  const setup2 = "External Apps";
+  const setup2Desc = "Integrate external applications for enhanced functionality.";
+  const setup3 = "Update System";
+  const setup3Desc = "Keep your device up-to-date with the latest firmware updates.";
+
+  const learnMore1 = "Learn More";
+  const learnMore2 = "Learn More";
+  const learnMore3 = "Learn More";
+
+  document.getElementById('title').textContent = title;
+  document.getElementById('caption').textContent = caption;
+  document.querySelector('#getStarted').textContent = getStarted;
+  document.querySelector('#contactUs').textContent = contactUs;
+  document.getElementById('aboutTitle').textContent = aboutTitle;
+  document.getElementById('aboutDesc').textContent = aboutDesc;
+  document.getElementById('getStartedTitle').textContent = getStartedTitle;
+  document.getElementById('setup1').textContent = setup1;
+  document.getElementById('setup2').textContent = setup2;
+  document.getElementById('setup3').textContent = setup3;
+  document.getElementById('setup1Desc').textContent = setup1Desc;
+  document.getElementById('setup2Desc').textContent = setup2Desc;
+  document.getElementById('setup3Desc').textContent = setup3Desc;
+  document.getElementById('learnMore1').textContent = learnMore1;
+  document.getElementById('learnMore2').textContent = learnMore2;
+  document.getElementById('learnMore3').textContent = learnMore3;
+  
+
+  /*===================================*/
+  /*           Animations              */
+  /*===================================*/
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
+  // Animate cards when in viewport
+  function animateElementsOnScroll() {
+    const elements = [
+      document.getElementById('aboutTitle'),
+      document.getElementById('aboutDesc'),
+      document.getElementById('getStartedTitle')
+    ];
+
+    elements.forEach(el => {
+      if (el) {
+        if (isInViewport(el)) {
+          el.classList.add('animate');
+        } else {
+          el.classList.remove('animate');
+        }
+      }
+    });
+
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      if (isInViewport(card)) {
+        card.classList.add('animate');
+      } else {
+        card.classList.remove('animate');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', animateElementsOnScroll);
+  window.addEventListener('load', animateElementsOnScroll);
+
+
+  /*===================================*/
+  /*     Button Navigation Actions     */
+  /*===================================*/
+
+  //==== Get Started Button ====//
+  document.querySelector('.get-started').addEventListener('click', () => {
+    console.log("Get Started clicked");
+    document.getElementById('setupSection').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  //==== Contact Us Button ====//
+  document.querySelector('.contact-us').addEventListener('click', () => {
+    window.location.href = 'https://www.medicapture.com/support';
+  });
+
+  //==== Network Setup Button ====//
+  document.getElementById('learnMore1').addEventListener('click', () => {
+    window.location.href = 'network.html';
+  });
+
+  //==== Integrate External Apps Button ====//
+  document.getElementById('learnMore2').addEventListener('click', () => {
+    window.location.href = 'externalApp.html';
+  });
+  
+  //==== Update System Button ====//
+  document.getElementById('learnMore3').addEventListener('click', () => {
+    window.location.href = 'update.html';
+  });
+
+</script>
+

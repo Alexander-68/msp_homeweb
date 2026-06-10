@@ -1,0 +1,429 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #193d50;
+  font-family: 'Arial', sans-serif;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+
+body::-webkit-scrollbar {
+  display: none; 
+}
+
+
+/*=====================================*/
+/*          Button Navigation          */
+/*=====================================*/
+.get-started {
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+  background: white;
+  border: white 0.15rem solid;
+  color: none;
+  border-radius: 2.5rem;
+  font-size: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.contact-us {
+  position: absolute;
+  top: 2.5rem;
+  left: 14rem;
+  background: transparent;
+  color: white;
+  border: white 0.15rem solid;
+  border-radius: 2.5rem;
+  font-size: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+/*=====================================*/
+/*          Landing Section            */
+/*=====================================*/
+.landing-section {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 1306px) {
+  .landing-section {
+    height: 80vh;
+  }
+}
+
+@media (min-height: 1300px) {
+  .landing-section {
+    height: 40vh;
+  }
+}
+
+/*===== Title and Caption =====*/
+.title {
+  font-size: 18rem;
+  font-weight: bold;
+  color: #193d50;
+  -webkit-text-stroke: 0.3rem white;
+  z-index: 1;
+  margin: 0;
+}
+
+@media (max-width: 1306px) {
+  .title {
+    font-size: 12rem;
+  }
+}
+
+
+.caption {
+  font-size: 2.5rem;
+  z-index: 1;
+  margin-top: -1.5rem;
+}
+
+@media (max-width: 1306px) {
+  .caption {
+    font-size: 1.8rem;
+    margin-top: -1rem;
+  }
+}
+
+/*===== Shapes Background =====*/
+/* .shape {
+  position: absolute;
+  background: linear-gradient(135deg, #b06ab3, #4568dc);
+  z-index: 0;
+  border-radius: 2rem;
+}
+
+.rectangle.large {
+  width: 66rem;
+  height: 34rem;
+  top: 8rem;
+  left: 7.5rem;
+}
+
+.rectangle.medium.bottom {
+  width: 48.5rem;
+  height: 24.5rem;
+  bottom: 9rem;
+  left: 10rem;
+}
+
+.rectangle.tall.right {
+  width: 18.5rem;
+  height: 76rem;;
+  right: 1.8rem;
+  top: 3.1rem;
+}
+
+.circle.small {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+}
+
+.circle.small.left {
+  height: 10rem;
+  width: 10rem;
+  top: 41rem;
+  left: 1rem;
+}
+
+.circle.small.right-bottom {
+  bottom: 2.5rem;
+  right: 13.5rem;
+} */
+
+
+/*=====================================*/
+/*           About Section             */
+/*=====================================*/
+.about-section {
+  padding: 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  gap: 3rem;
+}
+
+.about-content {
+  flex: 1;
+  max-width: 100%;
+}
+
+.about-content h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: #42a8d4;
+}
+
+.about-content p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: white;
+}
+
+.about-image {
+  flex: 1;
+  max-width: 30%;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/*=====================================*/
+/*            Setup Section            */
+/*=====================================*/
+.setup-section {
+  margin-top: 5rem;
+  padding: 1.5rem 3rem;
+  width: 100%;
+}
+
+.setup-title {
+  font-size: 2.8rem;
+  color: #42a8d4;
+  margin-bottom: 3rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 1306px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  border: 0.15rem solid #edecec;
+  border-radius: 1rem;
+  background-color: transparent;
+  color: white;
+  font-size: 1.5rem;
+  padding: 1.2rem;
+}
+
+.card h2 {
+  color: #addbff;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.card p {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.card button {
+  margin-top: 1.5rem;
+  background: #edecec;
+  border: none;
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+}
+
+
+/*=====================================*/
+/*         Setup Instructions          */
+/*=====================================*/
+.setup-title-2 {
+  top: 1.7rem;
+  right: 2.5rem;
+  position: absolute;
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-left: auto;
+  color: #42a8d4;
+}
+
+/*===== Vertical Progress Bar =====*/
+.vertical-progress-bar {
+  position: fixed;
+  width: 0.5rem;
+  top: 10rem;
+  left: 3rem;
+  height: calc(100rem - 10rem);
+  background: transparent;
+  border: 0.1rem solid white;
+  border-radius: 0.2rem;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.progress-fill-vertical {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0%;
+  background: #edecec; 
+  border-radius: 0.2rem;
+  transition: height 0.5s ease;
+  z-index: 2;
+}
+
+/*===== Steps Content =====*/
+.step-content {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  padding-left: 3rem;
+  top: 10rem;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 3rem;
+}
+
+.step-number {
+  font-size: 5rem;
+  font-weight: 900;
+  font-weight: bold;
+  color: transparent;
+  -webkit-text-stroke: 0.1rem white;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.step-instruction {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+  color: white;
+}
+
+.img-container {
+  margin-top: 2rem;
+  /* display: flex;
+  justify-content: center; */
+
+}
+
+.img {
+  width: 50rem;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  border: 2px solid #1a5c7a;
+  margin-bottom: 4rem;
+}
+
+
+/*=====================================*/
+/*          Animations Section         */
+/*=====================================*/
+#aboutTitle, #aboutDesc, #getStartedTitle {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+#aboutTitle.animate, #aboutDesc.animate, #getStartedTitle.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#step1, #step2, #step3, #step4, #step5, #step6, #step7, #step8, #step9, #step10,
+#num1, #num2, #num3, #num4, #num5, #num6, #num7, #num8, #num9, #num10,
+#img1, #img2, #img3, #img4, #img5, #img6, #img7, #img8, #img9, #img10 {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+#step1.animate, #step2.animate, #step3.animate, #step4.animate, #step5.animate, #step6.animate, #step7.animate, #step8.animate, #step9.animate, #step10.animate,
+#num1.animate, #num2.animate, #num3.animate, #num4.animate, #num5.animate, #num6.animate, #num7.animate, #num8.animate, #num9.animate, #num10.animate,
+#img1.animate, #img2.animate, #img3.animate, #img4.animate, #img5.animate, #img6.animate, #img7.animate, #img8.animate, #img9.animate, #img10.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*===== Animate all rectangles and circles =====*/
+.shape {
+  animation: slideUp 1s ease-out forwards;
+  opacity: 0;
+}
+
+.rectangle.large {
+  animation-delay: 0.2s;
+}
+.rectangle.medium.bottom {
+  animation-delay: 0.4s;
+}
+.rectangle.tall.right {
+  animation-delay: 0.6s;
+}
+.circle.small.left {
+  animation-delay: 0.8s;
+}
+.circle.small.right-bottom {
+  animation-delay: 1s;
+}
+
+
+/*===== Animate cards when in viewport =====*/
+.card {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.card.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step-content {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.step-content.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
