@@ -72,22 +72,12 @@
       <div class="step-number" id="num10">10</div>
       <div class="step-instruction" id="step10"></div>
       <div class="img-container" id="img10">
-        <img src="setup/selectDefaultApp.png" alt="Step 10 Screenshot" class="img"/>
+        <img src="setup/uploadWeb.png" alt="Step 10 Screenshot" class="img"/>
       </div>
       <div class="step-number" id="num11">11</div>
       <div class="step-instruction" id="step11"></div>
       <div class="img-container" id="img11">
-        <img src="setup/configureWebApp.png" alt="Step 11 Screenshot" class="img"/>
-      </div>
-      <div class="step-number" id="num12">12</div>
-      <div class="step-instruction" id="step12"></div>
-      <div class="img-container" id="img12">
-        <img src="setup/uploadWeb.png" alt="Step 12 Screenshot" class="img"/>
-      </div>
-      <div class="step-number" id="num13">13</div>
-      <div class="step-instruction" id="step13"></div>
-      <div class="img-container" id="img13">
-        <img src="setup/selectWebApp.png" alt="Step 13 Screenshot" class="img"/>
+        <img src="setup/selectDefaultApp.png" alt="Step 11 Screenshot" class="img"/>
       </div>
     </div>
   </div>
@@ -110,10 +100,8 @@
   const step7 = "Fill in the app details and click 'Add'.";
   const step8 = "Successfully added external app will be displayed here";
   const step9 = "The new external app is now available on the Home page.";
-  const step10 = "To set the default app, do step 1 to 5 again. Then select the app in default app section.";
-  const step11 = "To replace this guidance app with your web app, select 'Configure Web App'.";
-  const step12 = "Make sure your usb drive with your web app is connected, then select 'Upload web'.";
-  const step13 = "Select your web app from the list to set it as default.";
+  const step10 = "To set the default app, do step 1 to 5 again. Then select the app in app section. Make sure your usb drive with your web app is connected, then select 'Upload web'.";
+  const step11 = "Select your web app from the list to set it as default.";
 
   document.querySelector('#getStarted').textContent = getStarted;
   document.querySelector('#contactUs').textContent = contactUs;
@@ -129,8 +117,6 @@
   document.querySelector('#step9').textContent = step9;
   document.querySelector('#step10').textContent = step10;
   document.querySelector('#step11').textContent = step11;
-  document.querySelector('#step12').textContent = step12;
-  document.querySelector('#step13').textContent = step13;
   
   
   /*===================================*/
@@ -174,9 +160,7 @@
       document.getElementById('step8'),
       document.getElementById('step9'),
       document.getElementById('step10'),
-      document.getElementById('step11'),
-      document.getElementById('step12'),
-      document.getElementById('step13')
+      document.getElementById('step11')
     ];
     let stepsPassed = 0;
     const viewportMiddle = window.innerHeight / 2;
@@ -221,8 +205,6 @@
       document.getElementById('step9'),
       document.getElementById('step10'),
       document.getElementById('step11'),
-      document.getElementById('step12'),
-      document.getElementById('step13'),
       document.getElementById('num1'),
       document.getElementById('num2'),
       document.getElementById('num3'),
@@ -234,8 +216,6 @@
       document.getElementById('num9'),
       document.getElementById('num10'),
       document.getElementById('num11'),
-      document.getElementById('num12'),
-      document.getElementById('num13'),
       document.getElementById('img1'),
       document.getElementById('img2'),
       document.getElementById('img3'),
@@ -246,9 +226,7 @@
       document.getElementById('img8'),
       document.getElementById('img9'),
       document.getElementById('img10'),
-      document.getElementById('img11'),
-      document.getElementById('img12'),
-      document.getElementById('img13')
+      document.getElementById('img11')
     ];
 
     elements.forEach(el => {
